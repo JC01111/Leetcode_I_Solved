@@ -133,6 +133,7 @@ General cases we want to replace element with non-repeating element in `nums`, s
 |[3076. Shortest Uncommon Substring in an Array](./questions/3076.Shortest_Uncommon_Substring_in_an_Array(Medium).md)|Medium|[Link](https://leetcode.com/problems/shortest-uncommon-substring-in-an-array/)|Moveworks|Generate all substrings with a count hashmap; for each string pick the unique (count == 1) substring with min length, breaking ties lexicographically|
 |[527. Word Abbreviation](./questions/527.Word_Abbreviation(Hard).md)|Hard|[Link](https://leetcode.com/problems/word-abbreviation/)|Applied Intuition|Init each abbreviation with prefix=1; repeatedly find duplicate abbreviations in a hashmap and increment their prefix until all are unique|
 |[1233. Remove Sub-Folders from the Filesystem](./questions/1233.Remove_Sub-Folders_from_the_Filesystem(Medium).md)|Medium|[Link](https://leetcode.com/problems/remove-sub-folders-from-the-filesystem/)|Nuro|Sort folders; for each path split by "/" and check incrementally if any prefix is already in the seen set; skip if sub-folder|
+|[38. Count and Say](./questions/38.Count_and_Say(Medium).md)|Medium|[Link](https://leetcode.com/problems/count-and-say/)||Iteratively apply RLE `n-1` times; scan with `cnt`/`digit`, flush each group on change and after the loop|
 
 <!--
 |[]()|Medium|[Link]()|||
@@ -391,6 +392,7 @@ Usually needs to check `if not node`: `return None`
 |[460. LFU Cache](./questions/460.LFU_Cache(Hard).md)|Hard|[Link](https://leetcode.com/problems/lfu-cache)|Amazon||
 |[1171. Remove Zero Sum Consecutive Nodes from Linked List](./questions/1171.Remove_Zero_Sum_Consecutive_Nodes_from_Linked_List(Medium).md)|Medium|[Link](https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list)|ByteDance Interview|Calculate prefixSum from each node, if a path leads to 0, we cut the current nodes|
 |[234. Palindrome Linked List](./questions/234.Palindrome_Linked_List(Easy).md)|Easy|[Link](https://leetcode.com/problems/palindrome-linked-list/)|ServiceNow|Fast/slow ptrs to find midpoint, reverse second half in-place, then compare both halves node by node|
+|[24. Swap Nodes in Pairs](./questions/24.Swap_Nodes_in_Pairs(Medium).md)|Medium|[Link](https://leetcode.com/problems/swap-nodes-in-pairs/)||`dummy`/`prev` node before each pair; rewire `prev→second→first→second.next`, then advance `prev` two steps|
 
 
 <!--
@@ -544,7 +546,7 @@ Reminder: to add/check neighbor entries, remember to check boundary for [new_r, 
 |---|---|---|---|---|
 |[200. Number of Islands](./questions/200.Number_of_Islands_(Medium).md)|Medium|[Link](https://leetcode.com/problems/number-of-islands/)|AutoX, Amazon|Run BFS on each entry to find island that has not been visited|
 |[695. Max Area of Island](./questions/695.Max_Area_of_Island(Medium).md)|Medium|[Link](https://leetcode.com/problems/max-area-of-island/)|AutoX Tag||
-|[207. Course Schedule](./questions/207.Course_Schedule_(Medium).md)|Medium|[Link](https://leetcode.com/problems/course-schedule/)|DFS|Run DFS to check all the prerequisites of a course, if can be completed, remove it and set preMap[crs] = []|
+|[207. Course Schedule](./questions/207.Course_Schedule_(Medium).md)|Medium|[Link](https://leetcode.com/problems/course-schedule/)|TikTok|Run DFS to check all the prerequisites of a course, if can be completed, remove it and set preMap[crs] = []|
 |[210. Course Schedule II](./questions/210.Course_Schedule_II(Medium).md)|Medium|[Link](https://leetcode.com/problems/course-schedule-ii/)||
 |[130. Surrounded Regions](./questions/130.Surrounded_Regions(Medium).md)|Medium|[Link](https://leetcode.com/problems/surrounded-regions/)||
 |[286. Walls and Gates](./questions/286.Walls_and_Gates(Medium).md)|Medium|[Link](https://leetcode.com/problems/walls-and-gates/)|Graph BFS|
@@ -771,7 +773,6 @@ Greedy problems are hard to identify pattern, but one type of them can be solved
 |[53. Maximum Subarray](./questions/53.Maximum_Subarray_(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-subarray/)|
 |[55. Jump Game](./questions/55.Jump_Game_(Medium).md)|Medium|[Link](https://leetcode.com/problems/jump-game/)|
 |[45. Jump Game II](./questions/45.Jump_Game_II(Medium).md)|Medium|[Link](https://leetcode.com/problems/jump-game-ii/)|
-|[134. Gas Station](./questions/134.Gas_Station(Medium).md)|Medium|[Link](https://leetcode.com/problems/gas-station/)|
 |[846. Hand of Straights](./questions/846.Hand_of_Straights(Medium).md)|Medium|[Link](https://leetcode.com/problems/hand-of-straights/)|
 |[1296. Divide Array in Sets of K Consecutive Numbers](./questions/1296.Divide_Array_in_Sets_of_K_Consecutive_Numbers(Medium).md)|Medium|[Link](https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/)|
 |[763. Partition Labels](./questions/763.Partition_Labels(Medium).md)|Medium|[Link](https://leetcode.com/problems/partition-labels/)||Maintain `maxEnd` for a letter's farthest index, if current index `i == maxEnd`, we find a partition|
@@ -780,6 +781,7 @@ Greedy problems are hard to identify pattern, but one type of them can be solved
 |Miscellaneous|||||
 |[670. Maximum Swap](./questions/670.Maximum_Swap(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-swap)|Meta|Use variables to keep track of the current maximum index and swap indices, update them based on `num[i]`, finally check if both swap_ids are valid and swap, then return|
 |[1235. Maximum Profit in Job Scheduling](./questions/1235.Maximum_Profit_in_Job_Scheduling(Hard).md)|Hard|[Link](https://leetcode.com/problems/maximum-profit-in-job-scheduling)|Amazon|Use minHeap and greedy to update the maxProfit|
+|[3979. Maximum Valid Pair Sum](./questions/3979.Maximum_Valid_Pair_Sum(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-valid-pair-sum/)||For each `j >= k`, maintain running max `prev` of `nums[0..j-k]`; update `res = max(res, prev + nums[j])`|
 
 
 <!--
@@ -799,7 +801,7 @@ Kadane's Algorithm maintains a `curSum` which keep tracks of contiguous summatio
 |LeetCode 150|||||
 |[53. Maximum Subarray](./questions/53.Maximum_Subarray_(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-subarray/)||Kadane's algorithm|
 |[918. Maximum Sum Circular Subarray](./questions/918.Maximum_Sum_Circular_Subarray(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-sum-circular-subarray)||Use Kadane's alg to find globalMin and globalMax, return max(globalMax, sum(nums)-globalMin)|
-|[134. Gas Station](./questions/134.Gas_Station(Medium).md)|Medium|[Link](https://leetcode.com/problems/gas-station/)|
+|[134. Gas Station](./questions/134.Gas_Station(Medium).md)|Medium|[Link](https://leetcode.com/problems/gas-station/)|TikTok|
 |Miscellaneous||||First check if possible to run cycle. Then, find max subarray for each index i, if < 0, restart instead of expanding, hope the next index can cover|
 |[1800. Maximum Ascending Subarray Sum](./questions/1800.Maximum_Ascending_Subarray_Sum(Easy).md)|Easy|[Link](https://leetcode.com/problems/maximum-ascending-subarray-sum)||Kadane's Algorithm, when a non-ascending element exists, reset `curSum = 0`|
 |[3434. Maximum Frequency After Subarray Operation](./questions/3434.Maximum_Frequency_After_Subarray_Operation(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-frequency-after-subarray-operation)|Amazon Tag||
@@ -977,6 +979,7 @@ For this type of question, we usually need to perform `&, |` (and, or) operation
 |[172. Factorial Trailing Zeroes](./questions/172.Factorial_Trailing_Zeroes(Medium).md)|Medium|[Link](https://leetcode.com/problems/factorial-trailing-zeroes)||Count number of `10 = 2 * 5`, so we find the number of `5` that we can find|
 |Miscellaneous|||||
 |[7. Reverse Integer](./questions/7.Reverse_Integer(Medium).md)|Medium|[Link](https://leetcode.com/problems/reverse-integer/)|
+|[8. String to Integer (atoi)](./questions/8.String_to_Integer_(atoi)(Medium).md)|Medium|[Link](https://leetcode.com/problems/string-to-integer-atoi/)||Skip spaces, read sign, collect digits, clamp to `[-2^31, 2^31-1]`|
 |[1780. Check if Number is a Sum of Powers of Three](./questions/1780.Check_if_Number_is_a_Sum_of_Powers_of_Three(Medium).md)|Medium|[Link](https://leetcode.com/problems/check-if-number-is-a-sum-of-powers-of-three)||Iteratively minus $3^x$ from `n` if $3^x$ `<= n`|
 |[2579. Count Total Number of Colored Cells](./questions/2579.Count_Total_Number_of_Colored_Cells(Medium).md)|Medium|[Link](https://leetcode.com/problems/count-total-number-of-colored-cells)||Each time we update number of cells by multiple of `4`|
 |[2790. Maximum Number of Groups With Increasing Length](./questions/2790.Maximum_Number_of_Groups_With_Increasing_Length(Hard).md)|Hard|[Link](https://leetcode.com/problems/maximum-number-of-groups-with-increasing-length)|Amazon Tag|Sort it and find the pattern to satisfy each `k` group|
@@ -1141,6 +1144,15 @@ For this type of question, we usually need to perform `&, |` (and, or) operation
 |---|---|---|---|---|
 |[207. Course Schedule](./questions/207.Course_Schedule_(Medium).md)|Medium|[Link](https://leetcode.com/problems/course-schedule/)|DFS|Run DFS to check all the prerequisites of a course, if can be completed, remove it and set preMap[crs] = []|
 |[450. Delete Node in a BST](./questions/450.Delete_Node_in_a_BST(Medium).md)|Medium|[Link](https://leetcode.com/problems/delete-node-in-a-bst/)||Run Binary Search to find the key, then replace the key with the second smallest element from its right branch deep left node to maintain the BST property|
+|[328. Odd Even Linked List](./questions/328.Odd_Even_Linked_List(Medium).md)|Medium|[Link](https://leetcode.com/problems/odd-even-linked-list/)||
+|[1143. Longest Common Subsequence](./questions/1143.Longest_Common_Subsequence(Medium).md)|Medium|[Link](https://leetcode.com/problems/longest-common-subsequence/)||Was not able to identify this problem needs DP to solve|
+|[27. Remove Element](./questions/27.Remove_Element_(Easy).md)|Easy|[Link](https://leetcode.com/problems/remove-element/)||
+|[649. Dota2 Senate](./questions/649.Dota2_Senate(Medium).md)|Medium|[Link](https://leetcode.com/problems/dota2-senate/)||
+|[2542. Maximum Subsequence Score](./questions/2542.Maximum_Subsequence_Score(Medium).md)|Medium|[Link](https://leetcode.com/problems/maximum-subsequence-score/)||
+|[1657. Determine if Two Strings Are Close](./questions/1657.Determine_if_Two_Strings_Are_Close(Medium).md)|Medium|[Link](https://leetcode.com/problems/determine-if-two-strings-are-close/)||
+|[1372. Longest ZigZag Path in a Binary Tree](./questions/1372.Longest_ZigZag_Path_in_a_Binary_Tree(Medium).md)|Medium|[Link](https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/)||
+|[290. Word Pattern](./questions/290.Word_Pattern(Easy).md)|Easy|[Link](https://leetcode.com/problems/word-pattern/)||For hashmap questions, remember to check if two lengths are the same|
+|[36. Valid Sudoku](./questions/36.Valid_Sudoku_(Medium).md)|Medium|[Link](https://leetcode.com/problems/valid-sudoku/)||Remember to handle boxes as `(r//3, c//3)`|
 
 <!--
 |[]()|Medium|[Link]()|||
